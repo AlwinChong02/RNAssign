@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "626424084573",
+    "firebase_url": "https://react-native-assignment-74856-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "react-native-assignment-74856",
+    "storage_bucket": "react-native-assignment-74856.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:626424084573:android:21a9fe907bd7bac5c635b4",
+        "android_client_info": {
+          "package_name": "com.rnassign"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxEbIHo4EDAnHxvSrE_5QG7qV44xMVxe4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -12,6 +12,14 @@ import com.facebook.react.defaults.DefaultReactNativeHost
 import com.facebook.react.flipper.ReactNativeFlipper
 import com.facebook.soloader.SoLoader
 
+//newly added 11/4/2024 12:54am
+// import com.facebook.flipper.android.AndroidFlipperClient
+// import com.facebook.flipper.android.utils.FlipperUtils
+// import com.facebook.flipper.core.FlipperClient
+// import com.facebook.flipper.plugins.inspector.DescriptorMapping
+// import com.facebook.flipper.plugins.inspector.InspectorFlipperPlugin
+
+
 class MainApplication : Application(), ReactApplication {
 
   override val reactNativeHost: ReactNativeHost =
@@ -42,4 +50,15 @@ class MainApplication : Application(), ReactApplication {
     }
     ReactNativeFlipper.initializeFlipper(this, reactNativeHost.reactInstanceManager)
   }
+
+  // override fun onCreate() {
+  //   super.onCreate()
+  //   SoLoader.init(this, false)
+
+  //   if (BuildConfig.DEBUG && FlipperUtils.shouldEnableFlipper(this)) {
+  //     val client = AndroidFlipperClient.getInstance(this)
+  //     client.addPlugin(InspectorFlipperPlugin(this, DescriptorMapping.withDefaults()))
+  //     client.start()
+  //   }
+  // }
 }
