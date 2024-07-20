@@ -1,10 +1,6 @@
 import React  from "react";
-import type { StackScreenProps } from '@react-navigation/stack';
-import {Button, View, StyleSheet, TouchableNativeFeedback, Text} from "react-native";
+import { View, StyleSheet, TouchableNativeFeedback, Text} from "react-native";
 import  Ionicons  from 'react-native-vector-icons/Ionicons';
-import { RootStackParamList } from '../../Type'; 
-
-//export type Props = StackScreenProps<RootStackParamList, 'Setting'>;
 
 const SettingsScreen = ( { route, navigation}: any ) => {
     return(
@@ -20,7 +16,6 @@ const SettingsScreen = ( { route, navigation}: any ) => {
                 </TouchableNativeFeedback>
                 <View style = {{marginTop:1}}>
                 </View>
-                {/* MX Code Update User Profile*/}
                 <TouchableNativeFeedback onPress={()=>{navigation.navigate('Profile')}}>  
                     <View style={styles.button}>
                     <Ionicons name="people" size={24} color="black" />
@@ -64,21 +59,9 @@ const styles = StyleSheet.create({
       },
     buttonText: {
         fontSize: 18,
-        // fontWeight: 'bold',
         color: 'black',
         justifyContent: 'center',
         marginLeft: 10,
-      },
-    logOutButton: {
-        borderColor: 'grey',
-        borderWidth: 1,
-        padding: 10,
-        marginHorizontal: 50,
-      },
-    logOutButtonText: {
-        fontSize: 18,
-        color: 'black',
-        textAlign: 'center',
       },
 });
 

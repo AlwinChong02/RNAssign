@@ -1,11 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Alert, ScrollView } from 'react-native';
-// import { RootStackParamList } from '../../Type'; 
-// import type { StackScreenProps } from '@react-navigation/stack';
 import { storeReport } from '../../util/http';
 import { Rating } from 'react-native-ratings';
-
-// export type Props = StackScreenProps<RootStackParamList, 'Feedback'>;
 
 const FeedbackScreen = ( { route, navigation}: any ) => {
     const [rating, setRating] = useState(0);  // Default rating
@@ -54,7 +50,7 @@ const FeedbackScreen = ( { route, navigation}: any ) => {
                 />
                 <Button title="Submit Feedback" onPress={submitReport} disabled={!issueDescription} />
             </View>
-            <View style={styles.reportsContainer}>
+            <View style={styles.feedbackContainer}>
             </View>
         </ScrollView>
     );
@@ -67,6 +63,8 @@ const styles = StyleSheet.create({
     label: {
         fontSize: 16,
         padding: 10,
+        color: 'black',
+        fontWeight: 'bold',
     },
     input: {
         borderColor: 'gray',
@@ -80,25 +78,10 @@ const styles = StyleSheet.create({
     ratingContainer: {
         paddingVertical: 0,
     },
-    reportsContainer: {
+    feedbackContainer: {
         padding: 10,
         marginTop: 20,
     },
-    reportsTitle: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        marginBottom: 10,
-    },
-    reportItem: {
-        marginBottom: 10,
-        padding: 10,
-        backgroundColor: '#f0f0f0',
-        borderRadius: 10,
-    },
-    reportText: {
-        fontSize: 14,
-        marginBottom: 5,
-    }
 });
 
 

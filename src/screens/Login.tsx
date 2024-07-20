@@ -53,7 +53,7 @@ export default function App({route, navigation}:any) {
       return;
     }
 
-    let url = config.settings.serverPath + '/api/users/' + email;
+    let url = config.settings.serverUserPath + '/api/users/' + email;
     fetch(url)
       .then(response => {
         if (!response.ok) {
@@ -80,10 +80,8 @@ export default function App({route, navigation}:any) {
       });
   }
   
-  
   return (
     <SafeAreaView style={styles.container}>
-      
       <Image source={logo} style={styles.image} resizeMode='contain' />
       <Text style={styles.title}>Login</Text>
       <View style={styles.inputView}>
@@ -91,35 +89,30 @@ export default function App({route, navigation}:any) {
           underlineColorAndroid="transparent"
           onChangeText={(value) => setEmail(value)} 
           autoCorrect={false}
-          autoCapitalize='none' />
+          autoCapitalize='none' 
+          />
           <TextInput style={styles.input} placeholder='PASSWORD' 
           secureTextEntry value={password} 
           onChangeText={setPassword} 
           autoCorrect={false}
-          autoCapitalize='none'/>
+          autoCapitalize='none'
+          />
       </View>
-      <View style={styles.rememberView}>
-          <View style={styles.switch}>
-
-              <Text style={styles.rememberText}></Text>
-          </View>
-      </View>
-
       <View style={styles.buttonView}>
           <Pressable style={styles.button} onPress={handleSignIn}>
               <Text style={styles.buttonText}>LOGIN</Text>
           </Pressable>
       </View>
-
-      <Text style={styles.footerText}>Don't Have Account?
-    <Pressable onPress={() => navigation.navigate('SignUp')}>
-      <Text style={styles.signup}>  Sign Up</Text>
-    </Pressable>
-  </Text>
-
-      
-  </SafeAreaView>
-    )
+      <View style ={{flexDirection: 'row', justifyContent:'center'}}>
+        <Text style={styles.footerText}>Don't Have Account?
+          <Pressable onPress={() => navigation.navigate('SignUp')} style={{flexDirection:'row'}}>
+            <Text>   </Text>
+            <Text style={styles.signup}>Sign Up</Text>
+          </Pressable>
+        </Text>
+      </View>
+    </SafeAreaView>
+  )
 }
 
 const styles = StyleSheet.create({
@@ -141,11 +134,11 @@ const styles = StyleSheet.create({
       fontSize : 30,
       fontWeight : "bold",
       textTransform : "uppercase",
-      textAlign: "center",
-      paddingVertical : 40,
-      color : "red"
+      paddingVertical : 30,
+      color : "black",
     },
     inputView : {
+      bottom : 15,
       gap : 15,
       width : "100%",
       paddingHorizontal : 40,
@@ -154,38 +147,16 @@ const styles = StyleSheet.create({
     input : {
       height : 50,
       paddingHorizontal : 20,
-      borderColor : "red",
+      borderColor : "grey",
       borderWidth : 1,
-      borderRadius: 7
-    },
-    rememberView : {
-      width : "100%",
-      paddingHorizontal : 50,
-      justifyContent: "space-between",
-      alignItems : "center",
-      flexDirection : "row",
-      marginBottom : 8
-    },
-    switch :{
-      flexDirection : "row",
-      gap : 1,
-      justifyContent : "center",
-      alignItems : "center"
-      
-    },
-    rememberText : {
-      fontSize: 13
-    },
-    forgetText : {
-      fontSize : 11,
-      color : "red"
+      borderRadius: 7,
+      color : "black"
     },
     button : {
-      backgroundColor : "red",
+      backgroundColor : "orange",
       height : 45,
-      borderColor : "gray",
-      borderWidth  : 1,
-      borderRadius : 5,
+      width : "50%",
+      borderRadius : 100,
       alignItems : "center",
       justifyContent : "center"
     },
@@ -196,42 +167,20 @@ const styles = StyleSheet.create({
     }, 
     buttonView :{
       width :"100%",
-      paddingHorizontal : 50
-    },
-    optionsText : {
-      textAlign : "center",
-      paddingVertical : 10,
-      color : "gray",
-      fontSize : 13,
-      marginBottom : 6
-    },
-    mediaIcons : {
-      flexDirection : "row",
-      gap : 15,
       alignItems: "center",
       justifyContent : "center",
-      marginBottom : 23
+      marginTop : 20
     },
-    icons : {
-      width : 40,
-      height: 40,
-    },
-    footerText : {
-      textAlign: "center",
+    footerText : {  
+      flexDirection: 'row',
       color : "gray",
+      alignContent : "center",
     },
     signup : {
       color : "red",
-      fontSize : 13
-    },
-    bgImage: {
-      flex: 1,
-      resizeMode: 'cover',
-      position: 'absolute',
-      width: '100%',
-      height: '100%',
-      justifyContent: 'center',
-      opacity: 0.7,
+      fontSize : 13,
+      fontWeight : "bold",
+      textDecorationLine : "underline",
     },
 })
     

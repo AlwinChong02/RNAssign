@@ -2,10 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { fetchReports } from '../../util/http';
 import { Rating } from 'react-native-ratings';
-//import { RootStackParamList } from '../Types';
-// import type { StackScreenProps } from '@react-navigation/stack';
-
-// export type Props = StackScreenProps<RootStackParamList, 'ViewFeedback'>;
 
 const ViewFeedbackScreen = ({route, navigation}: any) => {
     const [fetchedReports, setFetchedReports] = useState<{ id: string; rating: any; description: any; }[]>([]);

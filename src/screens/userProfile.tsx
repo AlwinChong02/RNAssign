@@ -12,7 +12,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Dialog from "react-native-dialog";
 let config = require('../../config');
 const profile = require("../img/profile.png");
-
+import AppButton from '../../AppButton';
 
 export default function Profile({ navigation, route }: any) {
     const [name, setName] = useState('');
@@ -29,38 +29,6 @@ export default function Profile({ navigation, route }: any) {
         validateUser();
         const userEmail = route.params?.email;
     }, [])
-
-    // const syncUserData = async () => {
-    //   try {
-    //     await AsyncStorage.getItem('UserData');
-    //     .then(value => {
-    //       if (value != null) {
-    //         let user = JSON.parse(value);
-    //         setName(user.Name);
-    //         setEmail(user.Email);
-    //         setPhone(user.Phone);
-    //         setPassword(user.Password);
-    //       }
-    //     } )
-    //   } catch (error) {
-    //     console.error('Failed to fetch user data:', error);
-    //     Alert.alert('Error', 'Unable to load user data.');
-    //   }
-    // }
-    // const fetchData = async () => {
-    //   try {
-    //     const response = await axios.get(/api/users/ + userEmail);
-    //     const { name, email, phone, password } = response.data;
-    //     setName(name);
-    //     setEmail(email);
-    //     setPhone(phone);
-    //     setPassword(password);
-    //   } catch (error) {
-    //     console.error('Failed to fetch user data:', error);
-    //     Alert.alert('Error', 'Unable to load user data.');
-    //   }
-    // };
-
 
     const validateUser = () => {
         try {
@@ -98,7 +66,7 @@ export default function Profile({ navigation, route }: any) {
 
     const handleChange = () => {
 
-        if (oldPassword.length == 0 || newPassword.length == 0) {
+        if (oldPassword == null || newPassword == null) {
             Alert.alert('Warning', 'Please fill in all the particulars.');
             return;
         }
@@ -113,7 +81,7 @@ export default function Profile({ navigation, route }: any) {
             setNewPassword('');
         }
         else {
-            let url = config.settings.serverPath + '/api/users/' + email;
+            let url = config.settings.serverUserPath + '/api/users/' + email;
 
             fetch(url, {
                 method: 'PUT',
@@ -169,16 +137,47 @@ export default function Profile({ navigation, route }: any) {
         } catch (error) {
             console.log(error);
         }
-    }
+    };
+
+    const deleteUser = () => {
+        let url = config.settings.serverUserPath + '/api/users/' + email; 
+      
+        fetch(url, {
+          method: 'DELETE',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          }
+        }).then((response) => {
+          if (!response.ok) {
+            Alert.alert('Error', response.status.toString());
+            throw Error('Error: ' + response.status);
+          }else{
+            Alert.alert('User Deleted');
+          }
+      
+          return response.json();
+        }).then((responseJson) => {
+          if (responseJson.affected > 0) {
+            navigation.navigate('Login');
+          } else {
+            Alert.alert('Error deleting user');
+          }
+        })
+          .catch((error) => {
+            console.error(error);
+            Alert.alert('Error', 'Failed to delete user account.');
+        });
+    };
 
     return (
         <View style={styles.container}>
-
             <View style={styles.avatarContainer}>
                 <Image
                     style={styles.avatar}
                     source={profile}
-                /></View>
+                />
+            </View>
             <Text style={styles.changeAvatarButtonText}>Profile</Text>
             <View style={styles.form}>
                 <Text style={styles.label}>Name: </Text>
@@ -195,15 +194,14 @@ export default function Profile({ navigation, route }: any) {
                 </Text>
             </View>
 
-            <View style={styles.logOutButton}>
-                <Pressable style={styles.button} onPress={logout}>
-                    <Text style={styles.buttonText}>Log out</Text>
-                </Pressable>
+            <View style={styles.ontainer}>
+                <AppButton title="Log out" onPress={logout} />
             </View>
-            <View style={styles.changePasswordButton}>
-                <Pressable style={styles.button} onPress={showDialog}>
-                    <Text style={styles.buttonText}>Change Password</Text>
-                </Pressable>
+            <View style={styles.appButtonContainer}>
+                <AppButton title="Change Password" onPress={showDialog} />
+            </View>
+            <View style={styles.appButtonContainer}>
+                <AppButton title="Delete Account" onPress={deleteUser} />
             </View>
 
             <Dialog.Container visible={visible}>
@@ -240,8 +238,6 @@ const styles = StyleSheet.create({
         fontSize: 40,
         fontWeight: "bold",
         textTransform: "uppercase",
-        // textAlign: "top",
-        //paddingVertical : 40,
         marginBottom: 20,
         color: "red"
     },
@@ -253,29 +249,33 @@ const styles = StyleSheet.create({
     changeAvatarButtonText: {
         color: '#1E90FF',
         fontSize: 18,
+        fontWeight: 'bold',
     },
     logOutButton: {
         position: 'absolute',
-        bottom: '15%',
-        width: '28%',
+        bottom: '27%',
+        width: '26%',
         height: '12%',
-        left: '15%',
-        //backgroundColor: '#ff7da0',
+        left: '13%',
         justifyContent: 'center',
         alignItems: 'center',
     },
     changePasswordButton: {
         position: 'absolute',
-        bottom: '15%',
-        width: '28%',
+        bottom: '27%',
+        width: '26%',
         height: '12%',
-        right: '15%',
+        right: '18%',
         justifyContent: 'center',
-        //alignItems: 'center',
         textAlign: 'center', textAlignVertical: 'center',
     },
-    changePasswordText: {
-        fontSize: 10,
+    deleteButton: {
+        position: 'absolute',
+        bottom: '16%',
+        width: '28%',
+        height: '12%',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     input: {
         height: 40,
@@ -286,10 +286,18 @@ const styles = StyleSheet.create({
     button: {
         backgroundColor: "#1E90FF",
         height: 50,
-        width: 100,
+        width: 150,
         borderColor: "gray",
-        borderWidth: 1,
-        borderRadius: 5,
+        borderRadius: 200,
+        alignItems: "center",
+        justifyContent: "center"
+    },
+    buttonDelete: {
+        backgroundColor: "red",
+        height: 50,
+        width: 200,
+        borderColor: "gray",
+        borderRadius: 20,
         alignItems: "center",
         justifyContent: "center"
     },
@@ -305,9 +313,13 @@ const styles = StyleSheet.create({
     },
     label: {
         marginTop: 20,
+        color: 'black',
+        fontSize: 15,
+        fontWeight: 'bold',
     },
     input1: {
         borderColor: '#ccc',
+        color: 'black',
         borderWidth: 1,
         borderRadius: 5,
         padding: 10,
@@ -316,5 +328,9 @@ const styles = StyleSheet.create({
     form: {
         width: '80%',
     },
-
+     appButtonContainer: {
+        // Style the container for the AppButton component if needed
+        marginTop: 20,
+        alignItems: 'center',
+    },
 });

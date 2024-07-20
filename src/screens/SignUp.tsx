@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Alert, Image, Pressable, SafeAreaView, StyleSheet, Switch, Text, TextInput, View } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import React, { useState } from 'react';
+import { Alert, Pressable, SafeAreaView, StyleSheet, Switch, Text, TextInput, View } from 'react-native';
 let config = require('../../config.js');
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -36,7 +35,7 @@ export default function SignUp({navigation}:any){
       return;
     }
 
-    let url = config.settings.serverPath + '/api/users';
+    let url = config.settings.serverUserPath + '/api/users';
 
     fetch(url, {
       method: 'POST',
@@ -117,16 +116,12 @@ const styles = StyleSheet.create({
       alignItems : "center",
       paddingTop: 70,
     },
-    image : {
-      height : 180,
-      width : 350
-    },
     title : {
       fontSize : 30,
       fontWeight : "bold",
       textAlign: "center",
       paddingVertical : 40,
-      color : "red"
+      color : "black"
     },
     inputView : {
       gap : 15,
@@ -137,40 +132,19 @@ const styles = StyleSheet.create({
     input : {
       height : 50,
       paddingHorizontal : 20,
-      borderColor : "red",
+      borderColor : "grey",
       borderWidth : 1,
       borderRadius: 7
     },
-    rememberView : {
-      width : "100%",
-      paddingHorizontal : 50,
-      justifyContent: "space-between",
-      alignItems : "center",
-      flexDirection : "row",
-      marginBottom : 8
-    },
-    switch :{
-      flexDirection : "row",
-      gap : 1,
-      justifyContent : "center",
-      alignItems : "center"
-      
-    },
-    rememberText : {
-      fontSize: 13
-    },
-    forgetText : {
-      fontSize : 11,
-      color : "red"
-    },
     button : {
-      backgroundColor : "red",
+      backgroundColor : "orange",
+      marginTop : 20,
       height : 45,
-      borderColor : "gray",
-      borderWidth  : 1,
-      borderRadius : 5,
+      width : "50%",
+      borderRadius : 100,
       alignItems : "center",
-      justifyContent : "center"
+      justifyContent : "center",
+      alignSelf : "center",
     },
     buttonText : {
       color : "white"  ,
@@ -181,32 +155,6 @@ const styles = StyleSheet.create({
       width :"100%",
       paddingHorizontal : 50
     },
-    optionsText : {
-      textAlign : "center",
-      paddingVertical : 10,
-      color : "gray",
-      fontSize : 13,
-      marginBottom : 6
-    },
-    mediaIcons : {
-      flexDirection : "row",
-      gap : 15,
-      alignItems: "center",
-      justifyContent : "center",
-      marginBottom : 23
-    },
-    icons : {
-      width : 40,
-      height: 40,
-    },
-    footerText : {
-      textAlign: "center",
-      color : "gray",
-    },
-    signup : {
-      color : "red",
-      fontSize : 13
-    }
 })
 
     

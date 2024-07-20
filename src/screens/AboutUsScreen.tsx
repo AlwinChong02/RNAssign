@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert, Button, Linking, StyleSheet, View, ScrollView, Image, Text, Touchable } from 'react-native';
+import { Linking, StyleSheet, View, ScrollView, Image, Text } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
@@ -11,33 +11,33 @@ const openMapURL = (latitude: any, longitude: any) => {
 
 const openFbURL = async () => {
     const ytbURL = 'https://www.facebook.com/UTARnet/?locale=ms_MY'
-    Linking.openURL(ytbURL); //To check if URL is supported or not.
+    Linking.openURL(ytbURL); 
 }
 
 const openInstaURL = () => {
     const instaURL = 'https://www.instagram.com/utarnet1/'
-    Linking.openURL(instaURL); //To check if URL is supported or not.
+    Linking.openURL(instaURL); 
 }
 
 const openYtbURL = async () => {
     const ytbURL = 'https://www.youtube.com/@UtarEduMy'
-    Linking.openURL(ytbURL); //To check if URL is supported or not.
+    Linking.openURL(ytbURL); 
 }
 
 const AboutUsScreen = () => {
     return (
-        <ScrollView style={{ marginTop: 5, flex: 1, backgroundColor: 'white' }}>
+        <ScrollView style={{ marginTop: 5, flex: 1, backgroundColor: '#f7f9f9' }}>
             <View style={{ padding: 10 }}>
                 <View style={{ padding: 10, borderColor: "black", borderWidth: 1, borderRadius: 10 }}>
-                    <Image source={require('../img/UTAR.png')} style={{ width: 240, height: 120, alignSelf: 'center' }} />
-                    <Text style={styles.titleText}>Universiti Tunku Abdul Rahman (UTAR)</Text>
+                    <Image source={require('../img/recipe_logo.jpg')} style={{ width: 300, height: 150, alignSelf: 'center' }} />
+                    <Text style={styles.titleText}>Universiti Tunku Abdul Rahman Recipe (UTAR Recipe)</Text>
                 </View>
-                <View style={{ marginTop: 20 }}>
+                <View style={{ marginTop: 10 }}>
                     <Text style={styles.descriptionText}>
                         Welcome to UTAR, your go-to recipe guide and food app! Whether you're a beginner or a seasoned chef, UTAR offers a diverse range of recipes, cooking tips, and culinary inspiration. Our mission is to simplify cooking, spark creativity, and foster a love for good food. Join us on a flavorful journey with UTAR today!
                     </Text>
                 </View>
-                <View style={{ marginTop: 10 }}>
+                <View>
                     <View style={styles.urlContainer}>
                         <Ionicons name='logo-facebook' size={40} color="blue" paddingHorizontal={20} marginRight={20} />
                         <TouchableWithoutFeedback onPress={openFbURL}>
@@ -70,7 +70,7 @@ const AboutUsScreen = () => {
                             </View>
                         </TouchableWithoutFeedback>
                     </View>
-                    <View style={{ top: 20, height: 150 }}></View>
+                    <View style={{ top: 20, height: 110 }}></View>
                 </View>
             </View>
         </ScrollView>
@@ -82,6 +82,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         textAlign: 'center',
+        color: 'black',
         marginTop: 10,
     },
     urlContainer: {
@@ -94,6 +95,7 @@ const styles = StyleSheet.create({
     descriptionText: {
         fontSize: 15,
         textAlign: 'justify',
+        color: 'black',
         padding: 15,
     },
     button: {
@@ -113,7 +115,7 @@ const styles = StyleSheet.create({
         height: 45,
         width: 220,
         borderRadius: 40,
-        backgroundColor: '#D7FEF9',
+        backgroundColor: 'orange',
         alignItems: 'center',
         alignSelf: 'center',
         justifyContent: 'center',
