@@ -10,7 +10,7 @@ const FeedbackScreen = ( { route, navigation}: any ) => {
     const submitReport = async () => {
         const reportData = {
             rating: rating,
-            description: issueDescription
+            description: issueDescription   
         };
     
         try {
