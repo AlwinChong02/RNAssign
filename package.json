@@ -21,7 +21,7 @@
     "@react-navigation/material-top-tabs": "^6.6.13",
     "@react-navigation/native": "^6.1.15",
     "@react-navigation/stack": "^6.3.27",
-    "axios": "^1.6.8",
+    "axios": "^1.12.0",
     "firebase": "^10.11.1",
     "js-flipper": "^0.212.0",
     "react": "18.2.0",
